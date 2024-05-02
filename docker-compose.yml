@@ -1,0 +1,17 @@
+version: '3'
+
+services:
+    db:
+        image: postgres:14
+        volumes:
+            - ./db:/var/lib/postgresql/data
+        ports:
+            - "5432:5432"
+        environment:
+            POSTGRES_USER: postgres
+            POSTGRES_PASSWORD: postgres
+            POSTGRES_DB: crm
+        logging:
+            options:
+                max-size: "10m"
+                max-file: "3"
