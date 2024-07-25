@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+{% block content %}
+
+    <div class="col-md-6 offset-md-3">
+        <h1>Register</h1>
+        <br/>
+
+        <form method="POST" action="{% url 'register' %}">
+            {% csrf_token %}
+
+            {# Exibindo mensagens de erro #}
+            {% if form.errors %}
+                <div class="alert alert-danger" role="alert">
+                    <strong>Ops!</strong> Verifique os campos abaixo:
+                    <ul>
+                        {% for field in form %}
+                            {% for error in field.errors %}
+                                <li><strong>{{ field.label }}</strong>: {{ error }}</li>
+                            {% endfor %}
+                        {% endfor %}
+                    </ul>
+                </div>
+            {% endif %}
+
+            {{ form.as_p }}
+            <button type="submit" class="btn btn-primary">Register</button>
+        </form>
+    </div>
+
+
+
+{% endblock %}
